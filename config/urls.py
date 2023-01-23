@@ -26,7 +26,6 @@ from scan.views.assets import (
     AssetListView,
     AssetTradesListView,
     AssetTransfersListView,
-    
 )
 from scan.views.ats import AtDetailView, AtListView
 from scan.views.blocks import BlockDetailView, BlockListView
@@ -41,6 +40,7 @@ from scan.views.peers import (
     PeerMonitorListView,
     peers_charts_view,
     getSNRjson,
+    getStatejson,
 )
 from scan.views.pending_transactions import pending_transactions
 from scan.views.search import search_view
@@ -81,6 +81,7 @@ urlpatterns = [
     path("alias/", AliasListView.as_view(), name="alias"),
     path("sub/", SubscriptionListView.as_view(), name="subscription"),
     path("SNRinfo/", getSNRjson, name="snr-info"),
+    path("state/<str:address>", getStatejson, name="state"),
     # path("admin/", admin.site.urls),
 ]
 
