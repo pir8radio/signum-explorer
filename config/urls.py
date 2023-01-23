@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 
 from scan.views.accounts import AccountsListView, AddressDetailView
 from scan.views.assets import (
@@ -39,9 +39,14 @@ from scan.views.peers import (
     PeerMonitorDetailView,
     PeerMonitorListView,
     peers_charts_view,
+)
+
+from scan.views.json import (
     getSNRjson,
     getStatejson,
+    TopAccountsJson,
 )
+
 from scan.views.pending_transactions import pending_transactions
 from scan.views.search import search_view
 from scan.views.transactions import TxDetailView, TxListView, tx_export_csv
@@ -80,8 +85,10 @@ urlpatterns = [
     path("peer/<str:address>", PeerMonitorDetailView.as_view(), name="peer-detail"),
     path("alias/", AliasListView.as_view(), name="alias"),
     path("sub/", SubscriptionListView.as_view(), name="subscription"),
-    path("SNRinfo/", getSNRjson, name="snr-info"),
-    path("state/<str:address>", getStatejson, name="state"),
+    path("json/SNRinfo/", getSNRjson, name="snr-info"),
+    path("json/state/<str:address>", getStatejson, name="state"),
+    path("json/accounts/", TopAccountsJson, name="json-account"),
+    path("json/accounts/<int:results>", TopAccountsJson),
     # path("admin/", admin.site.urls),
 ]
 

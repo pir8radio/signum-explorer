@@ -8,16 +8,6 @@ from django.http import JsonResponse
 from scan.models import PeerMonitor
 
 @require_http_methods(["GET"])
-def getStatejson(request, address):
-    state = PeerMonitor.objects.only('state').get(real_ip=address).state
-    return JsonResponse(state, safe=False)
-
-@require_http_methods(["GET"])
-def getSNRjson(request):
-    snrraw = list(PeerMonitor.objects.all().values_list('announced_address', 'real_ip', 'reward_state', 'reward_time'))
-    return JsonResponse(snrraw, safe=False)
-
-@require_http_methods(["GET"])
 def peers_charts_view(request):
     online_now = PeerMonitor.objects.filter(state=PeerMonitor.State.ONLINE).count()
     versions = (
