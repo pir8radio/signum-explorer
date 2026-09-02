@@ -71,7 +71,7 @@ series: [{
     name: 'Nodes',
     type: 'mapbubble',
     mapData: Highcharts.maps['custom/world'],
-    joinBy: ['code', 'Country'],
+    joinBy: ['hc-key', 'Country'],
     keys: ['Country', 'Peers'],
     data: objs,
     minSize: 4,
