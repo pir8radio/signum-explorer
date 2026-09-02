@@ -13,7 +13,7 @@ Online: {{ online_now }}
 <script src="https://cdn.jsdelivr.net/npm/highcharts@latest/modules/data.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@latest/modules/exporting.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@latest/modules/export-data.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.0/mapdata/custom/world.geo.json"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@latest/highcharts-more.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@latest/modules/solid-gauge.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@latest/modules/accessibility.js"></script>
@@ -64,14 +64,14 @@ var chart = Highcharts.mapChart('geochart', {
   },
 
 series: [{
-    mapData: Highcharts.maps['custom/world.geo.json'],
+    mapData: Highcharts.maps['custom/world'],
     color: '#E0E0E0',
     enableMouseTracking: false,
     showInLegend: false
 }, {
     name: 'Nodes',
     type: 'mapbubble',
-    mapData: Highcharts.maps['custom/world.geo.json'],
+    mapData: Highcharts.maps['custom/world'],
     joinBy: ['iso-a2', 'Country'],
     keys: ['Country', 'Peers'],
     data: objs,
