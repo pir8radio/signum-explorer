@@ -22,6 +22,7 @@ Online: {{ online_now }}
   <script type="text/javascript">
 
 var data = [
+  [Country, Peers],
 {% for country in countries %}['{{ country.country_code }}', {{ country.cnt }}],{% endfor %}
 ];
 
