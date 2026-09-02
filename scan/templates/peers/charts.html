@@ -72,6 +72,7 @@ var chart = Highcharts.mapChart('geochart', {
     type: 'mapbubble',
     mapData: Highcharts.maps['custom/world'],
     joinBy: ['iso-a2', 'code'],
+    keys: ['code', 'z'],
     data: objs,
     minSize: 4,
     maxSize: '12%',
