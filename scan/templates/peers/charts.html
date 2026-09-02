@@ -22,14 +22,13 @@ Online: {{ online_now }}
   <script type="text/javascript">
 
 var data = [
-  ['Country', 'Peers'],
 {% for country in countries %}['{{ country.country_code }}', {{ country.cnt }}],{% endfor %}
 ];
 
 var objs = data.map(function(x) {
   return {
-    'code': x[0],
-    'z': x[1]
+    'Country': x[0],
+    'Peers': x[1]
   };
 });
 
