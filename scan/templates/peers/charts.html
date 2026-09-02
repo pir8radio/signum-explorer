@@ -63,6 +63,7 @@ var chart = Highcharts.mapChart('geochart', {
   },
 
 series: [{
+    mapData: Highcharts.maps['custom/world'],
     color: '#E0E0E0',
     enableMouseTracking: false,
     showInLegend: false
@@ -70,7 +71,7 @@ series: [{
     name: 'Nodes',
     type: 'mapbubble',
     mapData: Highcharts.maps['custom/world'],
-    joinBy: ['iso-a2', 'Country'],
+    joinBy: ['hc-key', 'Country'],
     keys: ['Country', 'Peers'],
     data: objs,
     minSize: 4,
