@@ -63,22 +63,22 @@ var chart = Highcharts.mapChart('geochart', {
     }
   },
 
-  series: [{
-    mapData: Highcharts.maps['custom/world'],
-    data: Highcharts.maps['custom/world'].features,
+series: [{
+    mapData: Highcharts.maps['custom/world.geo.json'],
+    data: Highcharts.maps['custom/world.geo.json'].features,
     color: '#E0E0E0',
     enableMouseTracking: false,
     showInLegend: false
-  }, {
+}, {
     name: 'Nodes',
     type: 'mapbubble',
-    mapData: Highcharts.maps['custom/world'],
+    mapData: Highcharts.maps['custom/world.geo.json'],
     joinBy: ['iso-a2', 'Country'],
     keys: ['Country', 'Peers'],
     data: objs,
     minSize: 4,
     maxSize: '12%',
-  }]
+}]
 });
 
   </script>
