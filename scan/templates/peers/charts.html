@@ -22,7 +22,6 @@ Online: {{ online_now }}
   <script type="text/javascript">
 
 var data = [
-  [
 {% for country in countries %}['{{ country.country_code }}', {{ country.cnt }}],{% endfor %}
 ];
 
