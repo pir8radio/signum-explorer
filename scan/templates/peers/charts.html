@@ -27,7 +27,7 @@ var data = [
 
 var objs = data.map(function(x) {
   return {
-    'Country': x[0],
+    'Country': x[0] === '??' ? 'ZZ' : x[0],
     'Peers': x[1]
   };
 });
