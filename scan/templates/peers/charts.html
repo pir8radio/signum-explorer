@@ -26,60 +26,65 @@ var data = [
 ];
 
 var objs = data
-  .filter(function(x) {
-    return x[0] !== '??'; // Unknown country can't be mapped
-  })
-  .map(function(x) {
-    return {
-      Country: x[0].toLowerCase(),
-      Peers: x[1]
-    };
-  });
+    .filter(function (x) {
+        return x[0] !== '??';
+    })
+    .map(function (x) {
+        return {
+            code: x[0].toLowerCase(),
+            z: x[1]
+        };
+    });
 
 var chart = Highcharts.mapChart('geochart', {
-  chart: {
-  },
-  data: {
-    enabled: false
-  },
-  accessibility: {
-    enabled: false
-  },
-  title: {
-    text: '',
-    align: 'left'
-  },
-  legend: {
-    enabled: false
-  },
-  credits: {
-    enabled: false
-  },
-  mapNavigation: {
-    enabled: true,
-    buttonOptions: {
-      verticalAlign: 'bottom'
-    }
-  },
-  series: [
-    {
-      mapData: Highcharts.maps['custom/world'],
-      color: '#E0E0E0',
-      enableMouseTracking: false,
-      showInLegend: false
-    },  
-    {
-      name: 'Nodes',
-      type: 'mapbubble',
-      joinBy: ['hc-key', 'Country'],
-      keys: ['Country', 'Peers'],
-      data: objs,
-      minSize: 4,
-      maxSize: '12%'
-    }
-  ]
+    chart: {
+    },
+    accessibility: {
+        enabled: false
+    },
+    title: {
+        text: '',
+        align: 'left'
+    },
+    legend: {
+        enabled: false
+    },
+    credits: {
+        enabled: false
+    },
+    exporting: {
+        enabled: true
+    },
+    mapNavigation: {
+        enabled: true,
+        buttonOptions: {
+            verticalAlign: 'bottom'
+        }
+    },
+
+    series: [
+        {
+            mapData: Highcharts.maps['custom/world'],
+            color: '#E0E0E0',
+            enableMouseTracking: false,
+            showInLegend: false
+        },
+
+        {
+            name: 'Nodes',
+            type: 'mapbubble',
+            mapData: Highcharts.maps['custom/world'],
+            joinBy: ['hc-key', 'code'],
+            data: objs,
+            minSize: 4,
+            maxSize: '12%',
+            color: '#2f7ed8',
+            showInLegend: false
+        }
+    ]
 });
-  </script>
+
+</script>
 
   <script type="text/javascript">
 
