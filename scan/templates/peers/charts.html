@@ -22,7 +22,7 @@ Online: {{ online_now }}
   <script type="text/javascript">
 
 var data = [
-  ['Country', 'Peers'],
+  [
 {% for country in countries %}['{{ country.country_code }}', {{ country.cnt }}],{% endfor %}
 ];
 
@@ -72,7 +72,7 @@ var chart = Highcharts.mapChart('geochart', {
     type: 'mapbubble',
     mapData: Highcharts.maps['custom/world'],
     joinBy: ['iso-a2', 'code'],
-    keys: ['code', 'z'],
+    keys: ['Country', 'Peers'],
     data: objs,
     minSize: 4,
     maxSize: '12%',
