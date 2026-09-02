@@ -70,12 +70,12 @@ var chart = Highcharts.mapChart('geochart', {
   }, {
     name: 'Nodes',
     type: 'mapbubble',
+    mapData: Highcharts.maps['custom/world'],
     joinBy: ['iso-a2', 'code'],
     data: objs,
     minSize: 4,
     maxSize: '12%',
   }]
-
 });
 
   </script>
