@@ -25,12 +25,16 @@ var data = [
 {% for country in countries %}['{{ country.country_code }}', {{ country.cnt }}],{% endfor %}
 ];
 
-var objs = data.map(function(x) {
-  return {
-    'Country': (x[0] === '??' ? 'ZZ' : x[0].toLowerCase()),
-    'Peers': x[1]
-  };
-});
+var objs = data
+  .filter(function(x) {
+    return x[0] !== '??'; // Unknown country can't be mapped
+  })
+  .map(function(x) {
+    return {
+      Country: x[0].toLowerCase(),
+      Peers: x[1]
+    };
+  });
 
 var chart = Highcharts.mapChart('geochart', {
   chart: {
@@ -41,43 +45,40 @@ var chart = Highcharts.mapChart('geochart', {
   accessibility: {
     enabled: false
   },
-
   title: {
     text: '',
     align: 'left'
   },
-
   legend: {
     enabled: false
   },
-
   credits: {
     enabled: false
   },
-
   mapNavigation: {
     enabled: true,
     buttonOptions: {
       verticalAlign: 'bottom'
     }
   },
-
-series: [{
-    mapData: Highcharts.maps['custom/world'],
-    color: '#E0E0E0',
-    enableMouseTracking: false,
-    showInLegend: false
-}, {
-    name: 'Nodes',
-    type: 'mapbubble',
-    joinBy: ['hc-key', 'Country'],
-    keys: ['Country', 'Peers'],
-    data: objs,
-    minSize: 4,
-    maxSize: '12%',
-}]
+  series: [
+    {
+      mapData: Highcharts.maps['custom/world'],
+      color: '#E0E0E0',
+      enableMouseTracking: false,
+      showInLegend: false
+    },  
+    {
+      name: 'Nodes',
+      type: 'mapbubble',
+      joinBy: ['hc-key', 'Country'],
+      keys: ['Country', 'Peers'],
+      data: objs,
+      minSize: 4,
+      maxSize: '12%'
+    }
+  ]
 });
-
   </script>
 
   <script type="text/javascript">
@@ -89,9 +90,7 @@ series: [{
         plotShadow: false,
         type: 'pie',
         marginLeft: 0
-
     },
-
         legend: {
         align: 'left',
         verticalAlign: 'top',
@@ -99,24 +98,19 @@ series: [{
         x: 0,
         y: 40
     },
-
     title: {
         text: 'Versions (Online)',
         align: 'left'
     },
-
     credits: {
         enabled: false
     },
-
     exporting: {
         enabled: false
     },
-
     tooltip: {
         pointFormat: '<b>{point.y} ({point.percentage:.1f}%)</b>'
     },
-
     plotOptions: {
         pie: {
             allowPointSelect: true,
@@ -127,7 +121,6 @@ series: [{
             showInLegend: true
         }
     },
-
     series: [{
         name: 'Version',
         colorByPoint: true,
